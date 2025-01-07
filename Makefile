@@ -14,7 +14,7 @@ DEPS := ${SRCS:.c=.d}
 	$(CC) $(CFLAGS) -g -c $< -o ${<:.c=.o}
 
 ${NAME}: $(OBJ)
-	cc ${CFLAGS} ${OBJ} $(MLX_LIB) -I$(MLX_PATH) -Llibft/  -g -lft -lXext -lX11 -lm -lbsd -o $(NAME)
+	cc ${CFLAGS} ${OBJ} $(MLX_LIB) -I$(MLX_PATH) -Llibft/  -g3 -lft -lXext -lX11 -lm -lbsd -o $(NAME)
 
 all: 	${NAME}
 

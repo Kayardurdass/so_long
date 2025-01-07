@@ -29,7 +29,7 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
-	int			item_count;
+	int			coin_count;
 	int			move_count;
 	e_direction	direction;
 }				t_player;
@@ -48,14 +48,43 @@ typedef struct s_tile
 	int		x;
 	int		y;
 	e_type	type;
+	int		is_accesible;
 }				t_tile;
 
 typedef struct s_map
 {
 	int		width;
 	int		height;
+	int		nb_coins;
 	t_tile	**tiles;
 }			t_map;
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct s_tileset
+{
+	int		height;
+	int		width;
+	t_data	**tileset;
+}				t_tileset;
+
+typedef struct s_var
+{
+	void		*mlx;
+	void		*mlx_win;
+	t_player	player;
+	t_tileset	map_sprites;
+	t_tileset	player_sprites;
+	t_map		map;
+	float		time;
+}				t_var;
+
 
 # define TILE_WALL_CORNER_DOWN_RIGHT(x) (x == 0 ? 0 : 0)
 # define TILE_WALL_DOWN_1(x) (x == 0 ? 1 : 0)
