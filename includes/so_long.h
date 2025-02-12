@@ -6,23 +6,31 @@
 /*   By: uanglade <uanglade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 21:10:05 by uanglade          #+#    #+#             */
-/*   Updated: 2024/12/03 21:13:32 by uanglade         ###   ########.fr       */
+/*   Updated: 2025/02/12 02:53:15 by uanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <time.h>
 # include "keys.h"
 # include "../GNL/get_next_line.h"
 # include "../libft/libft.h"
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <string.h>
+# include "../GNL/get_next_line.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 typedef enum s_direction
 {
-	UP,
-	DOWN,
-	RIGHT,
-	LEFT,
+	UP = KEY_UP,
+	DOWN = KEY_DOWN,
+	RIGHT = KEY_RIGHT,
+	LEFT = KEY_LEFT,
 }				e_direction;
 
 typedef struct s_player
@@ -82,9 +90,24 @@ typedef struct s_var
 	t_tileset	map_sprites;
 	t_tileset	player_sprites;
 	t_map		map;
-	float		time;
+	clock_t		time;
 }				t_var;
 
+int		ft_strlinelen(char *str);
+void	clean_and_exit(char *error, t_var var, int is_error);
+t_map	parse_map(char *map_path, t_var *var);
+void	draw_player(t_player player, t_tileset player_sprites, t_var var);
+void	draw_map(t_map map, t_tileset tileset, t_var var);
+int		direct_distance_to_tile(t_tile a, t_tile b);
+void	clean_and_exit(char *error, t_var var, int is_error);
+void	free_tileset(t_tileset tileset, void *mlx, int width, int height);
+int		can_go(t_map map, t_tile position, e_direction direction);
+void	flood_fill(t_tile point, t_map map);
+int		is_map_valid(t_map map, t_player player, t_var var);
+int		my_mlx_pixel_get(t_data *data, int x, int y);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	put_tile_to_img(t_data *full_img, t_data *tile, int x, int y);
+t_tileset	create_tileset(char *rel_path, t_var var, int width, int height);
 
 # define TILE_WALL_CORNER_DOWN_RIGHT(x) (x == 0 ? 0 : 0)
 # define TILE_WALL_DOWN_1(x) (x == 0 ? 1 : 0)
