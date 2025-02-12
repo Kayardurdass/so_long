@@ -6,7 +6,7 @@
 /*   By: uanglade <uanglade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 20:55:12 by uanglade          #+#    #+#             */
-/*   Updated: 2025/02/12 02:56:31 by uanglade         ###   ########.fr       */
+/*   Updated: 2025/02/12 04:06:50 by uanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	fill_line2(char c, t_map *ret, t_var *var, t_tile *tile)
 		var->player.y = tile->y;
 	}
 	else
-		return (clean_and_exit("Other char found in map", *var, 1));
+		return (clean_and_exit("Other char found in map\n", *var, 1));
 }
 
 void	fill_line(char *buffer, t_map *ret, t_var *var, int i)
@@ -83,9 +83,9 @@ int	parse_map2(t_map *ret, t_var *var, int fd, char *buffer)
 		ret->tiles[i] = (t_tile *)ft_calloc(ft_strlinelen(buffer),
 				sizeof(t_tile));
 		if (!ret->tiles[i])
-			clean_and_exit("Malloc error in the parsing of the map", *var, 1);
+			clean_and_exit("Malloc error in the parsing of the map\n", *var, 1);
 		if ((int)ft_strlinelen(buffer) != ret->width)
-			clean_and_exit("A line was longer or shorter than an other", *var,
+			clean_and_exit("A line was longer or shorter than an other\n", *var,
 				1);
 		ret->width = ft_strlinelen(buffer);
 		fill_line(buffer, ret, var, i);
@@ -106,12 +106,12 @@ t_map	parse_map(char *map_path, t_var *var)
 	i = 0;
 	ret.height = get_file_line_count(map_path);
 	if (ret.height < 3)
-		clean_and_exit("map too smal", *var, 1);
+		clean_and_exit("map too smal\n", *var, 1);
 	fd = open(map_path, O_RDONLY);
 	ret.nb_coins = 0;
 	ret.tiles = (t_tile **)ft_calloc(ret.height, sizeof(t_tile *));
 	if (!ret.tiles)
-		clean_and_exit("Malloc error in the parsing of the map", *var, 1);
+		clean_and_exit("Malloc error in the parsing of the map\n", *var, 1);
 	buffer = get_next_line(fd);
 	ret.width = ft_strlen(buffer) - 1;
 	i = parse_map2(&ret, var, fd, buffer);

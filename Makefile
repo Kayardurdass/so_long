@@ -7,7 +7,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 INCLUDE = -I./include -I./libft  -I/usr/include -Imlx_linux
-LINKER = -L$(LIBFT_DIR) -lft -L ./minilibx-linux/ -lmlx -lXext -lX11 -lm -lbsd
+LINKER = -L$(LIBFT_DIR) -lft -L./minilibx-linux/ -lmlx -lXext -lX11 -lm -lbsd
 
 YELLOW = \033[33m
 GREEN = \033[32m
@@ -33,7 +33,7 @@ $(NAME): minilibx-linux/libmlx.a $(LIBFT) $(OBJS)
 	@echo "$(YELLOW)Executing norminette on src$(RESET)"
 	@make -s norm
 	@echo "$(YELLOW)Building $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) ./GNL/get_next_line.c $(LINKER)  -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) ./GNL/get_next_line.c   -o $(NAME) $(LINKER)
 	@echo "$(GREEN)Build successful!$(RESET)"
 
 $(OBJDIR):

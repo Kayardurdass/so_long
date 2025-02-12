@@ -6,7 +6,7 @@
 /*   By: uanglade <uanglade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 22:24:01 by uanglade          #+#    #+#             */
-/*   Updated: 2025/02/12 03:13:26 by uanglade         ###   ########.fr       */
+/*   Updated: 2025/02/12 04:08:21 by uanglade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	_check(t_var var, t_map map)
 		while (++j < map.width)
 		{
 			if (map.tiles[i][j].type != FULL && (i == map.height - 1
-				|| j == map.width - 1 || i == 0 || j == 0))
-				return (clean_and_exit("Map not enclosed", var, 1));
+					|| j == map.width - 1 || i == 0 || j == 0))
+				return (clean_and_exit("Map not enclosed\n", var, 1));
 			c += (map.tiles[i][j].type == EXIT);
 			a += (map.tiles[i][j].type == START);
 			b += (map.tiles[i][j].type == COLLECTIBLE);
 		}
 	}
 	if (c != 1 || a != 1 || b == 0)
-		return (clean_and_exit("More or less than one start or exit", var, 1));
+		return (clean_and_exit("More or less than one start or exit\n", var, 1));
 }
 
 int	can_go(t_map map, t_tile position, e_direction direction)
@@ -99,7 +99,7 @@ int	is_map_valid(t_map map, t_player player, t_var var)
 		{
 			if (map.tiles[i][j].type != FULL && (i == map.height
 					|| j == map.width || i == 0 || j == 0))
-				return (clean_and_exit("Map not enclosed", var, 1), 0);
+				return (clean_and_exit("Map not enclosed\n", var, 1), 0);
 			if (map.tiles[i][j].is_accesible == 1
 				&& (map.tiles[i][j].type == COLLECTIBLE
 					|| map.tiles[i][j].type == EXIT))
