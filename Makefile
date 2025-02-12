@@ -26,7 +26,7 @@ norm:
 	@norminette $(SRCS) > /dev/null && echo "$(GREEN)Norminette: OK$(RESET)" || ( echo "$(RED)Norminette: KO" && norminette $(SRCS) | cat)
 
 minilibx-linux/libmlx.a:
-	@make -sC minilibx-linux/
+	@make -sC minilibx-linux/ > /dev/null 2> /dev/null
 
 $(NAME): minilibx-linux/libmlx.a $(LIBFT) $(OBJS) 
 	@cat .title | python .lolcat
